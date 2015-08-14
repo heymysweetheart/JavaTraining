@@ -1,0 +1,40 @@
+import java.io.*;
+
+/**
+ * Created by leo on 15/8/14.
+ */
+public class CopyLine {
+    public static void main(String[] args) {
+        BufferedReader bufferedReader = null;
+        PrintWriter printWriter = null;
+        String line = null;
+
+        try {
+            bufferedReader = new BufferedReader(new FileReader("/Users/leo/temp/CopyLine.java"));
+            printWriter = new PrintWriter(new BufferedWriter(new FileWriter("target.txt")));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            while ((line = bufferedReader.readLine()) != null) {
+               printWriter.write(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if(bufferedReader != null) {
+            try {
+                bufferedReader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (printWriter != null) {
+            printWriter.close();
+        }
+    }
+}
